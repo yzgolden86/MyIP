@@ -12,6 +12,32 @@
         <div class="offcanvas-body pt-0 m-2">
             <div class="preferences-tip">{{ t('nav.preferences.preferenceTips') }}</div>
 
+            <!-- 语言设置 -->
+
+            <div id="Pref_language">
+                <div class="form-label col-12 preferences-title"><i class="bi bi-translate"></i> {{
+                    t('nav.preferences.language') }}</div>
+                <div class="btn-group-vertical col-auto w-50 mb-2" role="group" aria-label="Color Scheme">
+                    <template v-for="lang in ['auto','zh', 'en', 'fr']">
+                        <input type="radio" class="btn-check" :name="'language' + lang" :id="'language' + lang"
+                            autocomplete="off" :value="lang" v-model="userPreferences.lang"
+                            @change="prefLanguage(lang)">
+                        <label class="btn jn-number text-start" :class="{
+                            'btn-outline-dark': !isDarkMode,
+                            'btn-outline-light': isDarkMode,
+                            'active fw-bold': userPreferences.lang === lang
+                        }" :for="'language' + lang">
+                            <span v-if="lang === 'zh'"><i class="fi fi-cn"></i> 中文&nbsp;</span>
+                            <span v-else-if="lang === 'en'"><i class="fi fi-us"></i> English&nbsp;</span>
+                            <span v-else-if="lang === 'fr'"><i class="fi fi-fr"></i> Français&nbsp;</span>
+                            <span v-else>{{ t('nav.preferences.systemAuto') }}&nbsp;</span>
+                            <i class="bi bi-check2-circle" v-if="userPreferences.lang === lang"></i>
+                        </label>
+                    </template>
+                </div>
+                <div class="preferences-tip">{{ t('nav.preferences.languageTips') }}</div>
+            </div>
+
             <!-- 主题方案 -->
 
             <div id="Pref_colorScheme">
@@ -31,7 +57,7 @@
                                 t('nav.preferences.colorLight') }}</span>
                             <span v-else-if="theme === 'dark'"><i class="bi bi-moon-stars"></i> {{
                                 t('nav.preferences.colorDark') }}</span>
-                            <span v-else>{{ t('nav.preferences.colorAuto') }}</span>
+                            <span v-else>{{ t('nav.preferences.systemAuto') }}</span>
                         </label>
                     </template>
                 </div>
@@ -44,7 +70,7 @@
                     <i class="bi bi-ui-checks-grid"></i> {{ t('nav.preferences.ipSourcesToCheck') }}
                 </div>
                 <div class="btn-group col-auto w-50 mb-2" role="group" aria-label="ipCards">
-                    <template v-for="num in [2, 3, 6]">
+                    <template v-for="num in [3, 6]">
                         <input v-model="userPreferences.ipCardsToShow" type="radio" class="btn-check"
                             :name="'ipCards_' + num" :id="'ipCards_' + num" autocomplete="off" :value=num
                             @change="prefipCards(num)">
@@ -94,7 +120,7 @@
                         :class="[isDarkMode ? 'border-light' : 'border-dark']">
                         <div class="me-auto">
                             <div class="fw-bold"><label class="form-check-label" for="autoStart">{{
-                                t('nav.preferences.autoRun')
+                                    t('nav.preferences.autoRun')
                                     }}</label>
                             </div>
                             <div class="preferences-tip">{{ t('nav.preferences.autoRunTips') }}</div>
@@ -110,7 +136,7 @@
                         :class="[isDarkMode ? 'border-light' : 'border-dark']" v-if="userPreferences.autoStart">
                         <div class="me-auto">
                             <div class="fw-bold"><label class="form-check-label" for="ConnectivityRefresh">{{
-                                t('nav.preferences.connectivityAutoRefresh') }}</label></div>
+                                    t('nav.preferences.connectivityAutoRefresh') }}</label></div>
                             <div class="preferences-tip">{{ t('nav.preferences.connectivityAutoRefreshTips') }}</div>
                         </div>
                         <div class="form-check form-switch col-auto ">
@@ -122,10 +148,10 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-start"
-                        :class="[isDarkMode ? 'border-light' : 'border-dark']" v-if="configs.bingMap">
+                        :class="[isDarkMode ? 'border-light' : 'border-dark']" v-if="configs.map">
                         <div class="me-auto">
                             <div class="fw-bold"><label class="form-check-label" for="showMap">{{
-                                t('nav.preferences.showMap')
+                                    t('nav.preferences.showMap')
                                     }}</label>
                             </div>
                             <div class="preferences-tip">{{ t('nav.preferences.showMapTips') }}</div>
@@ -141,7 +167,7 @@
                         :class="[isDarkMode ? 'border-light' : 'border-dark']" v-if="isMobile">
                         <div class="me-auto">
                             <div class="fw-bold"><label class="form-check-label" for="simpleMode">{{
-                                t('nav.preferences.simpleMode')
+                                    t('nav.preferences.simpleMode')
                                     }}</label></div>
                             <div class="preferences-tip">{{ t('nav.preferences.simpleModeTips') }}</div>
                         </div>
@@ -156,7 +182,7 @@
                         :class="[isDarkMode ? 'border-light' : 'border-dark']">
                         <div class="me-auto">
                             <div class="fw-bold"><label class="form-check-label" for="ConnectivityNotifications">{{
-                                t('nav.preferences.popupConnectivityNotifications') }}</label>
+                                    t('nav.preferences.popupConnectivityNotifications') }}</label>
                             </div>
                             <div class="preferences-tip">{{ t('nav.preferences.popupConnectivityNotificationsTips') }}
                             </div>
@@ -186,7 +212,7 @@ import { useMainStore } from '@/store';
 import { useI18n } from 'vue-i18n';
 import { trackEvent } from '@/utils/use-analytics';
 
-const {t} = useI18n();
+const { t } = useI18n();
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -194,6 +220,7 @@ const isMobile = computed(() => store.isMobile);
 const configs = computed(() => store.configs);
 const userPreferences = computed(() => store.userPreferences);
 const ipDBs = computed(() => store.ipDBs);
+const isSignedIn = computed(() => store.isSignedIn);
 
 const prefersDarkMode = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
 const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
@@ -229,8 +256,8 @@ const updateIPDBs = () => {
     if (configs.value && Object.keys(configs.value).length > 0) {
         store.updateIPDBs({ id: 0, enabled: configs.value.ipChecking });
         store.updateIPDBs({ id: 1, enabled: configs.value.ipInfo });
-        store.updateIPDBs({ id: 4, enabled: configs.value.keyCDN });
-        store.updateIPDBs({ id: 6, enabled: configs.value.ipapiis });
+        store.updateIPDBs({ id: 3, enabled: configs.value.ipapiis });
+        store.updateIPDBs({ id: 4, enabled: configs.value.ip2location });
     }
 };
 
@@ -252,10 +279,16 @@ const prefTheme = (value) => {
     trackEvent('Nav', 'PreferenceClick', 'Theme');
 };
 
-
+const prefLanguage = (value) => {
+    store.updatePreference('lang', value);
+    trackEvent('Nav', 'PrefereceClick', 'LanguageChange');
+};
 
 const prefConnectivityRefresh = (value) => {
     store.updatePreference('connectivityAutoRefresh', value);
+    if (isSignedIn.value && !store.userAchievements.ResourceHog.achieved) {
+        store.setTriggerUpdateAchievements('ResourceHog');
+    }
     trackEvent('Nav', 'PrefereceClick', 'ConnectivityRefresh');
 };
 
@@ -272,6 +305,9 @@ const prefSimpleMode = (value) => {
 const prefAutoStart = (value) => {
     store.updatePreference('autoStart', value);
     trackEvent('Nav', 'PrefereceClick', 'AutoStart');
+    if (isSignedIn.value && !value && !store.userAchievements.EnergySaver.achieved) {
+        store.setTriggerUpdateAchievements('EnergySaver');
+    }
 };
 
 const prefconnectivityShowNoti = (value) => {
@@ -342,25 +378,5 @@ defineExpose({
 
 #offcanvasPreferences {
     z-index: 1053;
-}
-
-.jn-check-dark:checked {
-    background-color: #ffffff;
-    border-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23212529'/%3e%3c/svg%3e");
-
-}
-
-.jn-check-dark:focus {
-    border-color: #ffffff;
-}
-
-.jn-check-light:checked {
-    background-color: #212529;
-    border-color: #212529;
-}
-
-.jn-check-light:focus {
-    border-color: #212529;
 }
 </style>

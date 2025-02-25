@@ -1,7 +1,143 @@
 {
+    "user": {
+        "SignIn": "Connexion",
+        "SignInWithGoogle": "Connexion avec Google",
+        "SignInWithGithub": "Connexion avec GitHub",
+        "SignOut": "Déconnexion",
+        "SignInToView": "Connectez-vous pour voir",
+        "SignInToUse": "Connectez-vous pour utiliser",
+        "InvalidUserToken": "Token utilisateur non valide",
+        "MyAchievements": "Succès",
+        "Fields": {
+            "User": "Utilisateur",
+            "CreatedAt": "Créé Le",
+            "LastLogin": "Dernière Connexion",
+            "Level": "Niveau d'Utilisateur",
+            "FunctionUses": "Utilisation des Avancées",
+            "Times": "Fois",
+            "Fetching": "Recherche..."
+        },
+        "Level": {
+            "Standard": "Utilisateur Standard",
+            "Premium": "Utilisateur Premium",
+            "Owner": "Administrateur",
+            "Developer": "Développeur",
+            "HonoraryMember": "Membre Honoraire"
+        },
+        "Benefits": {
+            "Title": "Avantages Utilisateurs",
+            "Benefit": "Avantage",
+            "Note1": "En tant que produit open-source, l'utilisation de IPCheck.ing est gratuite.",
+            "Note2": "Cependant, afin de prévenir les abus, nous limitons certaines fonctionnalités. En vous connectant, vous obtiendrez les avantages suivants :",
+            "Benefit1": "Lorsque vous utilisez IPCheck.ing comme source de données IP, tous les champs sont affichés intégralement.",
+            "Benefit2": "Peut utiliser le test d'invisibilité.",
+            "Benefit3": "Peut voir les badges de réussite qu'il a obtenus",
+            "Benefit4": "Réduit les restrictions d'accès à certaines fonctionnalités.",
+            "FootNote": "D'autres avantages sont en cours de développement..."
+        },
+        "Achievements": {
+            "Title": "Succès",
+            "Note": "En utilisant IPCheck.ing, vous pouvez déclencher certains succès. Ici, vous pouvez voir tous vos succès.",
+            "Get": "obtenus",
+            "GetCount": "Succès obtenus:",
+            "NotGet": "non obtenus",
+            "NotGetCount": "Succès non obtenus",
+            "FooterNote": "Parfois, il peut y avoir des succès limités dans le temps.",
+            "Congrats": "🎉 Félicitations",
+            "CongratsMessage": "Vous avez obtenu un nouvel accomplissement !",
+            "NewAchievementIs": "Le nouvel accomplissement est :",
+            "Type": {
+                "IAmHuman": {
+                    "Title": "Je suis humain",
+                    "Meet": "Utiliser IPCheck.ing après s'être connecté"
+                },
+                "BarelyEnough": {
+                    "Title": "Tout juste suffisant",
+                    "Meet": "Vitesse de téléchargement supérieure à 100 Mb/s"
+                },
+                "RapidPace": {
+                    "Title": "Allure rapide",
+                    "Meet": "Vitesse de téléchargement supérieure à 500 Mb/s"
+                },
+                "TorrentFlow": {
+                    "Title": "Flux torrentiel",
+                    "Meet": "Vitesse de téléchargement supérieure à 1000 Mb/s"
+                },
+                "SteadyGoing": {
+                    "Title": "Débit constant",
+                    "Meet": "Vitesse d'envoi supérieure à 50 Mb/s"
+                },
+                "TooFastTooSimple": {
+                    "Title": "Trop rapide, trop simple",
+                    "Meet": "Vitesse d'envoi supérieure à 200 Mb/s"
+                },
+                "SwiftAscent": {
+                    "Title": "Ascension rapide",
+                    "Meet": "Vitesse d'envoi supérieure à 1000 Mb/s"
+                },
+                "SurfaceCheck": {
+                    "Title": "Vérification superficielle",
+                    "Meet": "Terminer un élément de la liste de contrôle de sécurité"
+                },
+                "HalfwayThere": {
+                    "Title": "À mi-chemin",
+                    "Meet": "Terminer 50 % de la liste de contrôle de sécurité"
+                },
+                "FullySecured": {
+                    "Title": "Sécurisé à 100%",
+                    "Meet": "Terminer toute la liste de contrôle de sécurité"
+                },
+                "JustInCase": {
+                    "Title": "Au cas où",
+                    "Meet": "Effectuer un test de furtivité"
+                },
+                "HiddenWell": {
+                    "Title": "Bien caché",
+                    "Meet": "La probabilité de proxy et de VPN est de 0 dans le test de furtivité"
+                },
+                "SlipUp": {
+                    "Title": "Gaffe",
+                    "Meet": "La probabilité de proxy ou de VPN est supérieure à 50 % dans le test de furtivité"
+                },
+                "CleverTrickery": {
+                    "Title": "Ruse ingénieuse",
+                    "Meet": "Avoir consulté tous les raccourcis clavier"
+                },
+                "EnergySaver": {
+                    "Title": "Économe en énergie",
+                    "Meet": "Configurer le programme pour qu'il ne s'exécute pas automatiquement"
+                },
+                "ResourceHog": {
+                    "Title": "Gourmand en ressources",
+                    "Meet": "Configurer plusieurs rafraîchissements pour la disponibilité"
+                },
+                "MakingBigNews": {
+                    "Title": "Faire les gros titres",
+                    "Meet": "Les appels de fonctions avancées dépassent 1000 fois"
+                },
+                "GenerousDonor": {
+                    "Title": "Généreux donateur",
+                    "Meet": "Avoir fait un don au projet IPCheck.ing"
+                },
+                "ItIsOpen": {
+                    "Title": "C'est ouvert",
+                    "Meet": "Le test de censure a trouvé un site bloqué"
+                },
+                "CuriousCat": {
+                    "Title": "Chat curieux",
+                    "Meet": "Rechercher les informations de IPCheck.ing dans la recherche Whois"
+                },
+                "CrossingTheWall": {
+                    "Title": "Huit personnes traversent la muraille",
+                    "Meet": "Toutes les 8 adresses IP de test sont différentes dans le test de règles"
+                }
+            }
+        }
+    },
     "nav": {
         "id": "nav",
         "Title": "IPCheck.ing",
+        "Navigation": "Navigation",
         "IPInfo": "Infos IP",
         "Connectivity": "Connectivité",
         "WebRTC": "Test WebRTC",
@@ -15,7 +151,7 @@
             "title": "Préférences",
             "preferenceTips": "Ces paramètres sont enregistrés dans votre navigateur pour une utilisation ultérieure. Certains paramètres nécessitent un rafraîchissement de la page pour prendre effet.",
             "colorScheme": "Schéma de Couleurs",
-            "colorAuto": "Par Défaut Système",
+            "systemAuto": "Système",
             "colorLight": "Jour",
             "colorDark": "Nuit",
             "ipSourcesToCheck": "Serveurs pour vérifier les adresses IP",
@@ -32,8 +168,92 @@
             "popupConnectivityNotifications": "Alertes de Connectivité Pop-up",
             "popupConnectivityNotificationsTips": "Activé, les résultats de la première vérification sont affichés sous forme d'alerte pop-up.",
             "ipDB": "Base de données de géolocalisation IP",
-            "ipDBTips": "Vous pouvez sélectionner la source de données de géolocalisation IP par défaut. Si la source sélectionnée n'est pas disponible, le système utilisera les sources suivantes."
+            "ipDBTips": "Vous pouvez sélectionner la source de données de géolocalisation IP par défaut. Si la source sélectionnée n'est pas disponible, le système utilisera les sources suivantes.",
+            "language": "Paramètres de langue",
+            "languageTips": "Rafraîchissement du navigateur pour prendre effet."
         }
+    },
+    "securitychecklist": {
+        "Title": "Liste de vérification de sécurité",
+        "Note": "Ceci est une liste de vérification de cybersécurité très complète, couvrant des aspects tels que la sécurité des mots de passe, la sécurité de navigation, et la sécurité des dispositifs mobiles. Dans l'environnement actuel, une fuite d'informations peut entraîner des pertes significatives, il est donc nécessaire de s'assurer que nous protégeons notre vie privée et augmentons la sécurité de nos accès lors de la connexion à Internet.",
+        "Note2": "Cette liste contient de nombreux éléments; vous n'avez pas besoin de tout vérifier en une seule fois. Les progrès seront sauvegardés dans le navigateur, et vous pouvez revenir à tout moment pour continuer les vérifications.",
+        "Progress": "Progression des vérifications",
+        "Item": "Élément",
+        "Items": "Élément(s) ",
+        "Priority": "Priorité",
+        "Ignore": "Ignorer",
+        "alert-total": "La vérification de sécurité a un total de",
+        "alert-checked": "Vous avez complété",
+        "alert-ignored": "Ignoré",
+        "alert-unchecked": "Non vérifié.",
+        "Checked": "Vérifié",
+        "Ignored": "Ignoré",
+        "Unchecked": "Non vérifié",
+        "Basic": "De base",
+        "Optional": "En option",
+        "Essential": "Essentiel",
+        "Advanced": "Avancé",
+        "Reset": "Réinitialiser",
+        "ShowAll": "Afficher tout",
+        "ShowUnchecked": "Afficher les éléments non cochés",
+        "ShowIgnored": "Afficher les éléments ignorés",
+        "ShowChecked": "Afficher les éléments cochés",
+        "Loading": "Chargement..."
+    },
+    "curl": {
+        "Title": "API de ligne de commande",
+        "Note1": "Eh bien, il s'avère que toi aussi tu aimes utiliser le terminal ?",
+        "Note2_1": "Tu peux, dans le terminal, via",
+        "Note2_2": "commande, obtenir l'adresse IP de cette machine",
+        "Note3": "est un chemin optionnel, son ajout permettra d'obtenir les informations géographiques de l'IP",
+        "getIPv4": "Obtenir l'adresse IPv4 de la machine locale",
+        "getIPv6": "Obtenir l'adresse IPv6 de la machine locale",
+        "get6and4": "Obtenir l'adresse IP de sortie de réseau préférée de la machine locale",
+        "notAvailable": "Cette fonctionnalité n'est pas encore disponible"
+    },
+    "browserinfo": {
+        "Title": "Informations du Navigateur",
+        "Note": "Cette page affiche deux types d'informations sur le navigateur : les informations de base extraites de l'agent utilisateur du navigateur et une empreinte numérique du navigateur calculée à travers diverses métriques de données. Les empreintes numériques du navigateur sont similaires aux empreintes palmaires ; plus votre navigateur expose d'informations, plus votre unicité sur les sites web est élevée, ce qui vous rend plus facilement traçable. Parfois, même en passant en mode privé ou en changeant de navigateur, l'empreinte peut ne pas changer.",
+        "Note2": "Les méthodes de calcul des empreintes numériques des navigateurs sont variées, et différentes approches techniques peuvent conduire à des résultats incohérents. Ici, nous utilisons une méthode relativement simple pour le calcul.",
+        "browser": {
+            "Infos": "Informations du Navigateur",
+            "browserName": "Nom du Navigateur",
+            "browserVersion": "Version",
+            "engineName": "Moteur",
+            "engineVersion": "Version",
+            "osName": "Système d'Exploitation",
+            "osVersion": "Version",
+            "deviceModel": "Modèle",
+            "deviceVendor": "Fabricant",
+            "cpuArchitecture": "Architecture CPU",
+            "gpu": "GPU",
+            "cpuCores": "Cœurs CPU",
+            "language": "Code Langue",
+            "cookieEnabled": "Cookies Activés",
+            "cookieEnabledTrue": "Oui",
+            "cookieEnabledFalse": "Non"
+        },
+        "fingerprint": {
+            "Infos": "Informations sur l'Empreinte",
+            "fingerprint": "Code d'Empreinte",
+            "changeOption": "Vous pouvez essayer de modifier les données utilisées pour calculer l'empreinte du navigateur afin d'observer les variations (n'oubliez pas de vérifier en mode privé).",
+            "browserTips": "Certains navigateurs, comme Safari, protègent les utilisateurs contre le pistage en générant des valeurs d'empreinte différentes à chaque calcul, même lorsque les mêmes données sont sélectionnées."
+        },
+        "options": {
+            "audio": "Audio",
+            "canvas": "Canvas",
+            "fonts": "Polices",
+            "hardware": "Matériel",
+            "locales": "Langues",
+            "permissions": "Permissions",
+            "plugins": "Plugins",
+            "screen": "Écran",
+            "system": "Version du Navigateur",
+            "webgl": "WebGL",
+            "math": "Mathématiques"
+        },
+        "calError": "Échec du calcul des informations du navigateur, veuillez rafraîchir et réessayer.",
+        "calculating": "Calcul en cours..."
     },
     "invisibilitytest": {
         "Title": "Test d'invisibilité",
@@ -140,7 +360,9 @@
         "CensorshipCheck": "Vérifier si un site est bloqué dans certains pays",
         "Whois": "Recherche d'informations sur l'enregistrement de domaine/IP",
         "InvisibilityTest": "Vérifiez si vous utilisez un proxy ou un VPN",
-        "MacChecker": "Requête d'informations d'une adresse physique"
+        "MacChecker": "Requête d'informations d'une adresse physique",
+        "BrowserInfo": "Vérifier les informations du navigateur et l'empreinte digitale",
+        "SecurityChecklist": "Guide pour sécuriser votre vie numérique"
     },
     "macchecker": {
         "Title": "Recherche MAC",
@@ -198,7 +420,8 @@
         "Note": "Le test de règles est utilisé pour déterminer si les paramètres de règles basées sur le nom de domaine de votre logiciel proxy sont corrects. Avant de procéder au test, veuillez vous référer à la carte ci-dessous et configurer des règles de redirection de domaine différentes pour les 8 URL différentes d'IPCheck.ing dans votre logiciel proxy.",
         "StatusWait": "En attente du test ou erreur de connexion",
         "StatusError": "Erreur de test",
-        "Country": "Région de proxy"
+        "Country": "Région de proxy",
+        "RefreshAll": "Actualiser tout"
     },
     "Tooltips": {
         "RefreshIPCard": "Actualiser la carte IP",
@@ -213,7 +436,8 @@
         "InfoMask": "Masquer les informations IP",
         "QueryIP": "Interroger l'adresse IP",
         "GithubLink": "Voir le code source sur GitHub",
-        "RefreshRuleTests": "Actualiser les tests de règles"
+        "RefreshRuleTests": "Actualiser les tests de règles",
+        "qualityScoreExplain": "Le score de qualité IP est calculé sur la base de plusieurs facteurs pondérés, incluant le type d'IP, si c'est un proxy/VPN, et le nombre d'événements d'attaque récemment détectés provenant de cette IP. Un score plus élevé indique une meilleure qualité de l'IP, réduisant la probabilité d'être bloqué par le contrôle de risques sur certains sites."
     },
     "ipInfos": {
         "id": "ipinfos",
@@ -235,6 +459,8 @@
         "SelectSource": "Source de géolocalisation IP",
         "type": "Type",
         "isProxy": "Proxy",
+        "qualityScore": "Qualité IP",
+        "qualityScoreUnknown": "Score inconnu",
         "ASNInfo": {
             "note": "Données associées à cet AS :",
             "asnName": "Nom de l'AS :",
@@ -283,11 +509,11 @@
         "StatusWait": "En attente du test ou erreur de connexion",
         "StatusError": "Erreur de test",
         "NATType": {
-            "srflx": "Possiblement Port Restricted Cone ou Symmetric NAT",
-            "prflx": "Possiblement Port Restricted Cone NAT",
-            "relay": "Possiblement Symmetric NAT",
-            "host": "Possiblement Full Cone NAT",
-            "unknown": "Type de NAT inconnu"
+            "srflx": "Port Restricted Cone ou Symmetric",
+            "prflx": "Port Restricted Cone",
+            "relay": "Symmetric",
+            "host": "Full Cone",
+            "unknown": "Type de inconnu"
         }
     },
     "dnsleaktest": {
@@ -316,7 +542,15 @@
         "gaming": ", Jeu : ",
         "rtc": ", Chat vidéo : ",
         "score": "Sur la base du test de vitesse, voici les scores de qualité suivants :",
-        "resultNote": ". Le score est donné à titre indicatif seulement."
+        "resultNote": ".",
+        "connectionFrom": "Test de vitesse terminé depuis votre machine, IP: ",
+        "connectionTo": " vers le serveur de test:",
+        "connectionEnd": " .",
+        "quality": {
+            "Good": "Bon",
+            "Medium": "Moyen",
+            "Bad": "Mauvais"
+        }
     },
     "pingtest": {
         "id": "pingtest",
@@ -367,7 +601,9 @@
         "maskedInfoTitle": "Toutes les infos masquées",
         "maskedInfoMessage": "Toutes les informations ont été masquées, vous pouvez maintenant prendre des captures d'écran en toute sécurité.",
         "unmaskedInfoTitle": "Infos démasquées",
-        "unmaskedInfoMessage": "Les informations ont été démasquées, veuillez faire attention lorsque vous prenez des captures d'écran."
+        "unmaskedInfoMessage": "Les informations ont été démasquées, veuillez faire attention lorsque vous prenez des captures d'écran.",
+        "SignInFailed": "Echec de connexion",
+        "SignInFailedReason": "Raison"
     },
     "shortcutKeys": {
         "id": "shortcutKeys",
@@ -386,7 +622,7 @@
         "DNSResolver": "Ouvrir le Résolution DNS",
         "ToggleMaps": "Activer/désactiver les cartes",
         "IPCheck": "Vérification IP",
-        "ToggleInfoMask": "Activer/désactiver le masquage des informations",
+        "ToggleInfoMask": "Masquer/Démasquer les informations",
         "Help": "Afficher les raccourcis clavier",
         "HelpNote": "Les personnes qui utilisent des raccourcis clavier sont vraiment géniales !",
         "GoNext": "Carte suivante",
@@ -397,13 +633,16 @@
         "About": "Ouvrir À propos",
         "Whois": "Ouvrir la Recherche Whois",
         "InvisibilityTest": "Ouvrir le Test d'invisibilité",
-        "MacChecker": "Ouvrir le Recherche de MAC"
+        "MacChecker": "Ouvrir le Recherche de MAC",
+        "BrowserInfo": "Ouvrir l'Info du navigateur",
+        "fullScreenAdvancedTools": "Outils avancés en plein écran",
+        "Curl": "Ouvrir le Shell",
+        "SecurityChecklist": "Ouvrir la Liste de sécurité"
     },
     "page": {
         "title": "IPCheck.ing - Vérifier mon adresse IP et géolocalisation - Vérifier l'adresse IP de connexion WebRTC - Test de fuite DNS - Test de vitesse - Jason Ng Open Source",
         "description": "Une boîte à outils IP meilleure et open source. Facile à vérifier vos adresses IP, informations IP, vérifier les fuites DNS, examiner les connexions WebRTC, tester la disponibilité des sites web, rechercher des enregistrements DNS, rechercher des informations Whois et tester la latence dans le monde entier.",
         "keywords": "MonIP, Outil IP, Mon IP, Vérification IP, Recherche IP, Test de fuite DNS, Test WebRTC, Test de vitesse, Recherche DNS, Recherche Whois, Test de ping, Test de confidentialité",
-        "footerName": "Créateurs : Jason Ng, Seven Yu & ChatGPT",
         "footerLink": "https://github.com/jason5ng32/MyIP",
         "copyRightName": "Originalement de ",
         "copyRightLink": "https://ipcheck.ing",
@@ -426,7 +665,12 @@
         "personal": "Site personnel",
         "blog": "Mon blog",
         "retiremoney": "Planificateur futur",
-        "twitter": "Twitter"
+        "twitter": "Twitter",
+        "Sponsor": "Sponsor"
+    },
+    "specialthanks": {
+        "Title": "Merci spécial",
+        "Note1": "Ce projet n'aurait pas pu être achevé sans le soutien et l'aide de certaines personnes et organisations enthousiastes, ainsi que de ceux qui ont fourni l'inspiration ou partagé leur code en open-source. Un grand merci à eux :"
     },
     "changelog": {
         "Title": "Modifs",
@@ -785,6 +1029,100 @@
                     {
                         "type": "improve",
                         "change": "Optimisation de nombreux détails"
+                    }
+                ]
+            },
+            {
+                "version": "v4.2",
+                "date": "Sept 25, 2024",
+                "content": [
+                    {
+                        "type": "add",
+                        "change": "Ajout de la fonction de requête d'informations du navigateur"
+                    },
+                    {
+                        "type": "add",
+                        "change": "Ajout de la base de données géographique MaxMind"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Améliorations multiples de l'expérience"
+                    }
+                ]
+            },
+            {
+                "version": "v4.3",
+                "date": "Oct 30, 2024",
+                "content": [
+                    {
+                        "type": "add",
+                        "change": "Ajout de la fonctionnalité API en ligne de commande"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Le test WebRTC peut maintenant afficher des informations régionales"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Le test de fuite DNS peut maintenant afficher des informations régionales"
+                    }
+                ]
+            },
+            {
+                "version": "v4.4",
+                "date": "Dec 7, 2024",
+                "content": [
+                    {
+                        "type": "add",
+                        "change": "Préférences de langue"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Fournisseur de carte changé en Google"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Autres optimisations générales"
+                    }
+                ]
+            },
+            {
+                "version": "v4.5",
+                "date": "Dec 25, 2024",
+                "content": [
+                    {
+                        "type": "add",
+                        "change": "Liste de vérification de sécurité"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Autres optimisations générales"
+                    }
+                ]
+            },
+            {
+                "version": "v5.0",
+                "date": "Jan 31, 2025",
+                "content": [
+                    {
+                        "type": "add",
+                        "change": "Ajout de la système d'utilisateur"
+                    },
+                    {
+                        "type": "add",
+                        "change": "Ajout de la système de réussite utilisateur"
+                    },
+                    {
+                        "type": "add",
+                        "change": "Ajout de la version Lite"
+                    },
+                    {
+                        "type": "add",
+                        "change": "Le test de vitesse peut maintenant afficher des graphiques de données"
+                    },
+                    {
+                        "type": "improve",
+                        "change": "Optimisation de la performance du code"
                     }
                 ]
             }

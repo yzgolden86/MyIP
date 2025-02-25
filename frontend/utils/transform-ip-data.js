@@ -1,12 +1,12 @@
 // 解析IP数据
-function transformDataFromIPapi(data, ipGeoSource, t, bingMapLanguage) {
+function transformDataFromIPapi(data, ipGeoSource, t, mapLanguage) {
     if (data.error) {
         throw new Error(data.reason);
     }
 
     const baseData = {
         country_name: data.country_name || "",
-        country_code: data.country || "",
+        country_code: data.country === 'N/A' ? '' : data.country,
         region: data.region || "",
         city: data.city || "",
         latitude: data.latitude || "",
@@ -14,8 +14,8 @@ function transformDataFromIPapi(data, ipGeoSource, t, bingMapLanguage) {
         isp: data.org || "",
         asn: data.asn || "",
         asnlink: data.asn ? `https://radar.cloudflare.com/${data.asn}` : false,
-        mapUrl: data.latitude && data.longitude ? `/api/map?latitude=${data.latitude}&longitude=${data.longitude}&language=${bingMapLanguage}&CanvasMode=CanvasLight` : "",
-        mapUrl_dark: data.latitude && data.longitude ? `/api/map?latitude=${data.latitude}&longitude=${data.longitude}&language=${bingMapLanguage}&CanvasMode=RoadDark` : ""
+        mapUrl: data.latitude && data.longitude ? `/api/map?latitude=${data.latitude}&longitude=${data.longitude}&language=${mapLanguage}` : "",
+        mapUrl_dark: data.latitude && data.longitude ? `/api/map?latitude=${data.latitude}&longitude=${data.longitude}&language=${mapLanguage}&CanvasMode=Dark` : ""
     };
 
     if (ipGeoSource === 0) {
@@ -33,10 +33,11 @@ function transformDataFromIPapi(data, ipGeoSource, t, bingMapLanguage) {
 function extractProxyDetails(proxyDetect = {}, t) {
     const isProxy = determineIsProxy(proxyDetect, t);
     const type = determineType(proxyDetect, t);
+    const qualityScore = proxyDetect.risk === 'unknown' ? 'unknown' : proxyDetect.risk === 'sign_in_required'? 'sign_in_required' : (100 - proxyDetect.risk);
     const proxyProtocol = determineProtocol(proxyDetect, t);
     const proxyOperator = proxyDetect.operator || "";
 
-    return { isProxy, type, proxyProtocol, proxyOperator };
+    return { isProxy, type, qualityScore, proxyProtocol, proxyOperator };
 }
 
 // 判断是否代理
@@ -47,6 +48,8 @@ function determineIsProxy(proxyDetect, t) {
         return t('ipInfos.proxyDetect.maybe');
     } else if (proxyDetect.proxy === 'no') {
         return t('ipInfos.proxyDetect.no');
+    } else if (proxyDetect.proxy === 'sign_in_required') {
+        return 'sign_in_required';
     } else {
         return t('ipInfos.proxyDetect.unknownProxyType');
     }

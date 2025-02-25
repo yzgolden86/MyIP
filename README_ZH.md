@@ -30,7 +30,8 @@
 
 ## 👀 主要功能
 
-* 🖥️ **看自己的 IP**：从多个 IPv4 和 IPv6 来源检测显示本机的 IP
+* 🛜 **看自己的 IP**：从多个 IPv4 和 IPv6 来源检测显示本机的 IP
+* 🔍 **查任意 IP 信息**：可以通过小工具查询任意 IP 的信息
 * 🕵️ **看 IP 信息**：显示所有 IP 的相关信息，包括国家、地区、ASN、地理位置等
 * 🚦 **可用性检测**：检测一些网站的可用性：Google, Github, Youtube, 网易, 百度等
 * 🚥 **WebRTC 检测**：查看使用 WebRTC 连接时使用的 IP
@@ -43,9 +44,13 @@
 * 🚧 **封锁测试**：检查特定的网站在部分国家是否被封锁
 * 📓 **Whois 查询**：对域名或 IP 进行 whois 信息查询
 * 📀 **MAC 地址查询**：查询物理地址的归属信息
+* 🖥️ **浏览器指纹**：多种方式查看浏览器指纹
+* 📋 **网络安全检查清单**：一共有 258 项的，全面的网络安全检查清单
+
+## 💪 同时还支持
+
 * 🌗 **暗黑模式**：根据系统设置自动切换暗黑/白天模式，也可以手动切换
 * 📱 **简约模式**：为移动版提供的专门模式，缩短页面长度，快速查看最重要的信息
-* 🔍 **查任意 IP 信息**：可以通过小工具查询任意 IP 的信息
 * 📲 **支持 PWA**：可以添加为手机应用以及电脑里的桌面应用，方便使用
 * ⌨️ **支持快捷键**：可以随时输入 `?` 查看快捷键菜单
 * 🌍 根据可用性检测结果，返回目前是否可以访问全世界网络的提示
@@ -96,15 +101,21 @@ docker run -d -p 18966:18966 --name myip --restart always jason5ng32/myip:latest
 | `SECURITY_RATE_LIMIT` | 否 | `"0"` | 控制每 60 分钟一个 IP 可以对后端服务器请求的次数（设置为 0 则为不限制） |
 | `SECURITY_DELAY_AFTER` | 否 | `"0"` | 控制每 20 分钟一个 IP 的前 X 次请求不受速度限制，超过 X 次后会逐次增加延迟 |
 | `SECURITY_BLACKLIST_LOG_FILE_PATH` | 否 | `"logs/blacklist-ip.log"` | 路径设置。记录由 SECURITY_RATE_LIMIT 开启后，触发限制的 IP 列表 |
-| `BING_MAP_API_KEY` | 否 | `""` | Bing 地图的 API Key，用于展示 IP 所在地的地图 |
+| `GOOGLE_MAP_API_KEY=` | 否 | `""` | Google 地图的 API Key，用于展示 IP 所在地的地图 |
 | `ALLOWED_DOMAINS` | 否 | `""` | 允许访问的域名，用逗号分隔，用于防止后端 API 被滥用 |
 | `IPCHECKING_API_KEY` | 否 | `""` | IPCheck.ing 的 API Key，用于获取精准的 IP 归属地信息 |
 | `IPINFO_API_TOKEN` | 否 | `""` | IPInfo.io 的 API Token，用于通过 IPInfo.io 获取 IP 归属地信息 |
 | `IPAPIIS_API_KEY` | 否 | `""` | IPAPI.is 的 API Key，用于通过 IPAPI.is 获取 IP 归属地信息 |
-| `KEYCDN_USER_AGENT` | 否 | `""` | 使用 KeyCDN 时的域名，需包含 https 前缀。用于通过 KeyCDN 获取 IP 归属地信息 |
+| `IP2LOCATION_API_KEY` | 否 | `""` | IP2Location.io 的 API Key，用于通过 IP2Location.io 获取 IP 归属地信息 |
 | `CLOUDFLARE_API` | 否 | `""` | Cloudflare 的 API Key，用于通过 Cloudflare 获取 AS 系统的信息 |
 | `MAC_LOOKUP_API_KEY` | 否 | `""` | MAC 查询的 API Key，用于通过 MAC Lookup 获取 MAC 地址的归属信息 |
+| `IPCHECKING_API_ENDPOINT` | **是** | `""` | IPCheck.ing 的 API 端点 URL |
 | `VITE_GOOGLE_ANALYTICS_ID` | **是** | `""` | Google Analytics 的 ID，用于统计访问量 |
+| `VITE_CURL_IPV4_DOMAIN` | 否 | `""` | 为用户提供 CURL API 的 IPv4 域名 |
+| `VITE_CURL_IPV6_DOMAIN` | 否 | `""` | 为用户提供 CURL API 的 IPv6 域名 |
+| `VITE_CURL_IPV64_DOMAIN` | 否 | `""` | 为用户提供 CURL API 的双网络栈域名 |
+
+需要注意的是，如果 CURL 系列的环境变量任意一个缺失，都不会启用 CURL API。
 
 ### 在 Node 环境里使用环境变量
 
@@ -119,7 +130,7 @@ cp .env.example .env
 ```bash
 BACKEND_PORT=11966
 FRONTEND_PORT=18966
-BING_MAP_API_KEY="YOUR_KEY_HERE"
+GOOGLE_MAP_API_KEY="YOUR_KEY_HERE"
 ALLOWED_DOMAINS="example.com"
 IPCHECKING_API="YOUR_KEY_HERE"
 ```
@@ -132,7 +143,7 @@ IPCHECKING_API="YOUR_KEY_HERE"
 
 ```bash
 docker run -d -p 18966:18966 \
-  -e BING_MAP_API_KEY="YOUR_KEY_HERE" \
+  -e GOOGLE_MAP_API_KEY="YOUR_KEY_HERE" \
   -e ALLOWED_DOMAINS="example.com" \
   -e IPCHECKING_API="YOUR_TOKEN_HERE" \
   --name myip \
@@ -146,9 +157,10 @@ docker run -d -p 18966:18966 \
 
 ```ini
 # IP Testing
-IP-CIDR,1.0.0.1/32,DIRECT,no-resolve
-IP-CIDR6,2606:4700:4700::1111/128,DIRECT,no-resolve
-DOMAIN-SUFFIX,ipify.org,Proxy
+IP-CIDR,1.0.0.2/32,Proxy,no-resolve
+IP-CIDR6,2606:4700:4700::1111/128,Proxy,no-resolve
+DOMAIN,4.ipcheck.ing,DIRECT
+DOMAIN,6.ipcheck.ing,DIRECT
 # Rule Testing
 DOMAIN,ptest-1.ipcheck.ing,Proxy1
 DOMAIN,ptest-2.ipcheck.ing,Proxy2

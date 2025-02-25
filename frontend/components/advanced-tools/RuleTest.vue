@@ -1,14 +1,7 @@
 <template>
     <div>
         <!-- RuleTest -->
-        <div class="rule-test-section mb-4">
-            <div class="jn-title2">
-                <h2 id="RuleTest" :class="{ 'mobile-h2': isMobile }">🚏 {{ t('ruletest.Title') }}</h2>
-                <button @click="checkAllRuleTest(true)"
-                    :class="['btn', isDarkMode ? 'btn-dark dark-mode-refresh' : 'btn-light']"
-                    aria-label="Refresh Rule Test" v-tooltip="t('Tooltips.RefreshRuleTests')"><i
-                        class="bi bi-arrow-clockwise"></i></button>
-            </div>
+        <div class="rule-test-section my-4">
             <div class="text-secondary">
                 <p>{{ t('ruletest.Note') }}</p>
             </div>
@@ -36,19 +29,34 @@
                                 <span :class="{ 'jn-ip-font': test.ip.length > 32 }">{{ test.ip }}</span>
                             </p>
                             <div class="alert" :class="{
-                                'alert-info': test.country_code === t('ruletest.StatusWait'),
-                                'alert-success': test.country_code !== t('ruletest.StatusWait'),
+                                'alert-info': test.country === t('ruletest.StatusWait'),
+                                'alert-danger': test.country === t('ruletest.StatusError'),
+                                'alert-success': test.country !== t('ruletest.StatusWait') && test.country !== t('ruletest.StatusError'),
                             }" :data-bs-theme="isDarkMode ? 'dark' : ''">
                                 <i class="bi"
                                     :class="[test.ip === t('ruletest.StatusWait') || test.ip === t('ruletest.StatusError') ? 'bi-hourglass-split' : 'bi-geo-alt-fill']"></i>
                                 {{ t('ruletest.Country') }}: <strong>{{ test.country }}&nbsp;</strong>
-                                <span v-if="test.country_code !== t('ruletest.StatusWait')"
+                                <span v-show="test.country_code"
                                     :class="'jn-fl fi fi-' + test.country_code.toLowerCase()"></span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="flex justify-content-center col-12" :class="[
+                    isMobile ? '' : 'text-center mt-4',
+                ]">
+                    <button class="btn" :class="[
+                    finishAll? 'btn-success' : 'btn-info',
+                    isMobile ? 'w-100' : 'w-25'
+                    ]" :disabled="!finishAll" @click="checkAllRuleTest(true)">
+                        <span v-if="finishAll"><i class="bi bi-arrow-clockwise"></i> {{t('ruletest.RefreshAll')}}</span>
+                        <span v-else class="spinner-grow spinner-grow-sm bg-white" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
+
+
+
         </div>
     </div>
 </template>
@@ -65,11 +73,12 @@ const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
 const isMobile = computed(() => store.isMobile);
 const lang = computed(() => store.lang);
+const isSignedIn = computed(() => store.isSignedIn);
 
 const createDefaultCard = () => ({
     name: t('ruletest.Name'),
     ip: t('ruletest.StatusWait'),
-    country_code: t('ruletest.StatusWait'),
+    country_code: '',
     country: t('ruletest.StatusWait'),
 });
 
@@ -81,6 +90,7 @@ const ruleTests = ref(Array.from({ length: 8 }, (_, index) => ({
 
 const IPArray = ref([]);
 const testCount = ref(ruleTests.value.length);
+const finishAll = ref(false);
 
 const fetchTrace = async (id, url) => {
     try {
@@ -101,7 +111,7 @@ const fetchTrace = async (id, url) => {
         }
     } catch (error) {
         ruleTests.value[id].ip = t('ruletest.StatusError');
-        ruleTests.value[id].country_code = t('ruletest.StatusError');
+        ruleTests.value[id].country_code = '';
         ruleTests.value[id].country = t('ruletest.StatusError');
         console.error("Error fetching Data:", error);
     }
@@ -109,11 +119,12 @@ const fetchTrace = async (id, url) => {
 
 // 检查所有 RuleTest
 const checkAllRuleTest = async (refresh = false) => {
-
+    finishAll.value = false;
     if (refresh) {
         ruleTests.value.forEach((test) => {
             test.ip = t('ruletest.StatusWait');
-            test.country_code = t('ruletest.StatusWait');
+            test.country = t('ruletest.StatusWait');
+            test.country_code = '';
         });
     }
 
@@ -125,12 +136,30 @@ const checkAllRuleTest = async (refresh = false) => {
                 console.error("Error fetching Data:", error);
             } finally {
                 processTest(index + 1);
+                if (index === testCount.value - 1) {
+                    finishAll.value = true;
+                    if (isSignedIn.value) {
+                        checkAchievements();
+                    }
+                }
             }
         }
     };
 
+
     processTest(0);
 };
+
+// 检查是否达成成就
+const checkAchievements = () => {
+    const allIPs = ruleTests.value.map((test) => test.ip);
+    const uniqueIPs = [...new Set(allIPs)];
+    if (uniqueIPs.length === 8) {
+        if (!store.userAchievements.CrossingTheWall.achieved) {
+            store.setTriggerUpdateAchievements('CrossingTheWall');
+        }
+    }
+}
 
 onMounted(() => {
     setTimeout(() => {

@@ -1,7 +1,143 @@
 {
+  "user": {
+    "SignIn": "登录/注册",
+    "SignInWithGoogle": "使用 Google 登录",
+    "SignInWithGithub": "使用 GitHub 登录",
+    "SignOut": "登出",
+    "SignInToView": "登录后查看",
+    "SignInToUse": "请登录后使用",
+    "InvalidUserToken": "无效的用户 Token",
+    "MyAchievements": "我的成就",
+    "Fields": {
+      "User": "用户",
+      "CreatedAt": "创建于",
+      "LastLogin": "最后登录",
+      "Level": "用户等级",
+      "FunctionUses": "高级功能使用",
+      "Times": "次",
+      "Fetching": "获取中..."
+    },
+    "Level": {
+      "Standard": "标准用户",
+      "Premium": "高级用户",
+      "Owner": "管理员",
+      "Developer": "开发者",
+      "HonoraryMember": "荣誉用户"
+    },
+    "Benefits": {
+      "Title": "用户权益",
+      "Benefit": "权益",
+      "Note1": "作为一个开源产品，你使用 IPCheck.ing 的过程是免费的。",
+      "Note2": "但是，为了避免滥用，我们会限制一些功能。当你登录后，你将得到以下权益：",
+      "Benefit1": "当你使用 IPCheck.ing 作为 IP 数据解析源时，完整显示所有字段",
+      "Benefit2": "可以使用隐身测试",
+      "Benefit3": "可以看到自己获得的成就勋章",
+      "Benefit4": "减少部分功能的访问限制",
+      "FootNote": "更多权益陆续开发中..."
+    },
+    "Achievements": {
+      "Title": "成就",
+      "Note": "在使用 IPCheck.ing 的过程中，你可能会触发一些成就，在这里，你可以看到你所有的成就。",
+      "Get": "已获得",
+      "GetCount": "已获得的成就数量",
+      "NotGet": "未获得",
+      "NotGetCount": "未获得的成就数量",
+      "FooterNote": "有时候，可能会有一些限时成就。",
+      "Congrats": "🎉 恭喜",
+      "CongratsMessage": "你获得了一个新成就！",
+      "NewAchievementIs": "新成就是：",
+      "Type": {
+        "IAmHuman": {
+          "Title": "有头有脸",
+          "Meet": "登录后使用 IPCheck.ing"
+        },
+        "BarelyEnough": {
+          "Title": "凑凑合合",
+          "Meet": "下载速度超过 100Mb/s"
+        },
+        "RapidPace": {
+          "Title": "快马加鞭",
+          "Meet": "下载速度超过 500Mb/s"
+        },
+        "TorrentFlow": {
+          "Title": "一泻千里",
+          "Meet": "下载速度超过 1000Mb/s"
+        },
+        "SteadyGoing": {
+          "Title": "普普通通",
+          "Meet": "上传速度超过 50Mb/s"
+        },
+        "TooFastTooSimple": {
+          "Title": "港记难追",
+          "Meet": "上传速度超过 200Mb/s"
+        },
+        "SwiftAscent": {
+          "Title": "日行千里",
+          "Meet": "上传速度超过 1000Mb/s"
+        },
+        "SurfaceCheck": {
+          "Title": "蜻蜓点水",
+          "Meet": "完成一项安全检查清单"
+        },
+        "HalfwayThere": {
+          "Title": "半半拉拉",
+          "Meet": "完成 50% 安全检查清单"
+        },
+        "FullySecured": {
+          "Title": "滴水不漏",
+          "Meet": "完成全部安全检查清单"
+        },
+        "JustInCase": {
+          "Title": "以防万一",
+          "Meet": "完成一次隐身测试"
+        },
+        "HiddenWell": {
+          "Title": "不露声色",
+          "Meet": "隐身测试中代理和 VPN 概率都是 0"
+        },
+        "SlipUp": {
+          "Title": "露出马脚",
+          "Meet": "隐身测试中代理或 VPN 概率大于 50%"
+        },
+        "CleverTrickery": {
+          "Title": "奇技淫巧",
+          "Meet": "查看了所有快捷键"
+        },
+        "EnergySaver": {
+          "Title": "省油的灯",
+          "Meet": "设置程序不自动运行"
+        },
+        "ResourceHog": {
+          "Title": "费油的车",
+          "Meet": "设置多次刷新可用性"
+        },
+        "MakingBigNews": {
+          "Title": "搞大新闻",
+          "Meet": "高级功能调用超过 1000 次"
+        },
+        "GenerousDonor": {
+          "Title": "慷慨解囊",
+          "Meet": "给 IPCheck.ing 项目捐赠过"
+        },
+        "ItIsOpen": {
+          "Title": "是开放的",
+          "Meet": "在封锁测试中，查询到了一个被封锁的网站"
+        },
+        "CuriousCat": {
+          "Title": "好奇的猫",
+          "Meet": "在 Whois 查询中，查询了 IPCheck.ing 的信息"
+        },
+        "CrossingTheWall": {
+          "Title": "八仙过墙",
+          "Meet": "在规则测试中，8 个测试的 IP 全部不相同"
+        }
+      }
+    }
+  },
   "nav": {
     "id": "nav",
     "Title": "IPCheck.ing",
+    "Navigation": "导航",
     "IPInfo": "IP 信息",
     "Connectivity": "网络连通性",
     "WebRTC": "WebRTC 测试",
@@ -15,7 +151,7 @@
       "title": "偏好设置",
       "preferenceTips": "这些设置会保存在浏览器，方便下次使用。部分选项需要刷新页面方可生效。",
       "colorScheme": "颜色方案",
-      "colorAuto": "跟随系统",
+      "systemAuto": "跟随系统",
       "colorLight": "白天",
       "colorDark": "黑夜",
       "ipSourcesToCheck": "IP 检测服务器数量",
@@ -32,8 +168,92 @@
       "popupConnectivityNotifications": "显示可用性检测气泡",
       "popupConnectivityNotificationsTips": "开启后，将会在首次检测时以气泡形式提示可用性结果。",
       "ipDB": "IP 解析数据源",
-      "ipDBTips": "你可以选择你默认使用的 IP 地理位置数据源，如果你选定的不可用，系统会依次使用后续的数据源。"
+      "ipDBTips": "你可以选择你默认使用的 IP 地理位置数据源，如果你选定的不可用，系统会依次使用后续的数据源。",
+      "language": "语言设置",
+      "languageTips": "刷新浏览器后生效。"
     }
+  },
+  "securitychecklist": {
+    "Title": "安全检查清单",
+    "Note": "这是一份非常全面的网络安全检查清单，涵盖密码安全、浏览安全、移动设备安全等方面的内容。在当前环境下，信息泄露可能会导致重大的损失，因此，确保我们在连接互联网的时候，我们尽可能地保护自己的隐私、提高访问的安全性是很有必要的。",
+    "Note2": "这个清单罗列的内容非常多，你不一定要一次性检查完，进度会在浏览器里保存，你可以随时返回继续检查。",
+    "Progress": "检查进度",
+    "Item": "项目",
+    "Items": "个项目",
+    "Priority": "级别",
+    "Ignore": "忽略",
+    "alert-total": "安全检查一共有",
+    "alert-checked": "你已经完成了",
+    "alert-ignored": "被忽略",
+    "alert-unchecked": "个未进行检查。",
+    "Checked": "已检查",
+    "Ignored": "已忽略",
+    "Unchecked": "未检查",
+    "Basic": "基础",
+    "Optional": "可选",
+    "Essential": "必要",
+    "Advanced": "高级",
+    "Reset": "重置",
+    "ShowAll": "显示所有",
+    "ShowUnchecked": "显示未检查",
+    "ShowIgnored": "显示已忽略",
+    "ShowChecked": "显示已检查",
+    "Loading": "加载中..."
+  },
+  "curl": {
+    "Title": "命令行 API",
+    "Note1": "哟，原来你也喜欢用终端？",
+    "Note2_1": "你可以在终端里，通过",
+    "Note2_2": "命令获取本机的 IP 地址",
+    "Note3": "是可选路径，添加后可获取到 IP 的地理信息",
+    "getIPv4": "获取本机 IPv4 地址",
+    "getIPv6": "获取本机 IPv6 地址",
+    "get6and4": "获取本机优先网络出口的 IP 地址",
+    "notAvailable": "此功能暂未开放，敬请期待"
+  },
+  "browserinfo": {
+    "Title": "浏览器信息",
+    "Note": "本页面展示两类浏览器信息：浏览器 User Agent 解析出来的基本信息，以及通过多项数据计算出来的浏览器指纹。浏览器指纹就像手掌的掌纹，当浏览器的信息暴露越多，你被网站识别的唯一性越高，也就是说，你越容易被网站跟踪到。有些时候，即使你切换到隐私模式，甚至更换浏览器，指纹可能也不会发生变化。",
+    "Note2": "浏览器指纹的计算的方法是多种多样的，不同的技术方案算法和结果不完全一致，我们在这里采用一种相对简单的方法进行计算。",
+    "browser": {
+      "Infos": "浏览器信息",
+      "browserName": "浏览器名称",
+      "browserVersion": "版本",
+      "engineName": "引擎",
+      "engineVersion": "版本",
+      "osName": "系统",
+      "osVersion": "版本",
+      "deviceModel": "型号",
+      "deviceVendor": "制造商",
+      "cpuArchitecture": "CPU 架构",
+      "gpu": "GPU",
+      "cpuCores": "CPU 核心数",
+      "language": "语言代码",
+      "cookieEnabled": "是否启用 Cookie",
+      "cookieEnabledTrue": "是",
+      "cookieEnabledFalse": "否"
+    },
+    "fingerprint": {
+      "Infos": "指纹信息",
+      "fingerprint": "指纹编码",
+      "changeOption": "你可以尝试变更用于计算浏览器指纹的数据，观察指纹的变化（记得打开隐私模式对照查看）。",
+      "browserTips": "有些浏览器（比如 Safari）为了保护用户不被跟踪，即使勾选相同的数据，每次计算都可能会得到不同的指纹值。"
+    },
+    "options": {
+      "audio": "音频",
+      "canvas": "画布",
+      "fonts": "字体",
+      "hardware": "硬件",
+      "locales": "语言",
+      "permissions": "权限",
+      "plugins": "插件",
+      "screen": "屏幕",
+      "system": "浏览器版本",
+      "webgl": "WebGL",
+      "math": "运算"
+    },
+    "calError": "浏览器信息计算失败，请刷新重试。",
+    "calculating": "计算中..."
   },
   "invisibilitytest": {
     "Title": "隐身测试",
@@ -140,7 +360,9 @@
     "CensorshipCheck": "检查一个网站在某些国家是否被封锁",
     "Whois": "对域名或 IP 进行 Whois 查询",
     "InvisibilityTest": "猜猜看我是否知道你挂了代理",
-    "MacChecker": "查询物理地址的归属信息"
+    "MacChecker": "查询物理地址的归属信息",
+    "BrowserInfo": "检阅浏览器信息和指纹",
+    "SecurityChecklist": "全面的数字生活安全检查清单"
   },
   "macchecker": {
     "Title": "MAC 地址查询",
@@ -198,7 +420,8 @@
     "Note": "分流测试用于判断代理软件基于域名的规则设置是否正确。在进行测试之前，你需要先参考下方的卡片，在你的代理软件里对 IPCheck.ing 的 8 个不同的 URL 设置不同的域名分流规则。",
     "StatusWait": "待检测",
     "StatusError": "检测出错",
-    "Country": "代理地区"
+    "Country": "代理地区",
+    "RefreshAll": "刷新所有"
   },
   "Tooltips": {
     "RefreshIPCard": "刷新 IP 信息",
@@ -213,7 +436,8 @@
     "InfoMask": "隐藏信息",
     "QueryIP": "查询 IP 信息",
     "GithubLink": "查看源代码",
-    "RefreshRuleTests": "刷新规则测试"
+    "RefreshRuleTests": "刷新规则测试",
+    "qualityScoreExplain": "IP 质量分根据多个因素加权计算出来，包含了 IP 的类型、是否属于代理/VPN 和近期监测到来自该 IP 的攻击事件数量等。分数越高，意味着该 IP 的质量越好，在一些网站里，这个 IP 被风控阻断的概率就越低。"
   },
   "ipInfos": {
     "id": "ipinfos",
@@ -235,6 +459,8 @@
     "SelectSource": "选择 IP 归属地数据来源",
     "type": "类型",
     "isProxy": "代理",
+    "qualityScore": "IP 质量分",
+    "qualityScoreUnknown": "未知分数",
     "ASNInfo": {
       "note": "此 AS 的相关数据：",
       "asnName": "AS 名称：",
@@ -283,11 +509,11 @@
     "StatusWait": "待检测或连接错误",
     "StatusError": "测试出错",
     "NATType": {
-      "srflx": "可能是端口限制型或对称型 NAT",
-      "prflx": "可能是端口限制型 NAT",
-      "relay": "可能是对称型 NAT",
-      "host": "可能是全锥型 NAT",
-      "unknown": "未知 NAT 类型"
+      "srflx": "端口限制型或对称型",
+      "prflx": "端口限制型",
+      "relay": "对称型",
+      "host": "全锥型",
+      "unknown": "未知类型"
     }
   },
   "dnsleaktest": {
@@ -313,10 +539,18 @@
     "StatusWait": "--",
     "StatusError": "测试出错",
     "videoStreaming": "在线视频：",
-    "gaming": " 分，在线游戏：",
-    "rtc": " 分，视频会议：",
+    "gaming": " ，在线游戏：",
+    "rtc": " ，视频会议：",
     "score": "根据网速测试，得出以下质量分数：",
-    "resultNote": " 分。分数仅供参考。"
+    "resultNote": " 。",
+    "connectionFrom": "已完成从你的机器，IP：",
+    "connectionTo": "与测速服务器：",
+    "connectionEnd": " 的测试。",
+    "quality": {
+      "Good": "优秀",
+      "Medium": "中等",
+      "Bad": "较差"
+    }
   },
   "pingtest": {
     "id": "pingtest",
@@ -367,7 +601,9 @@
     "maskedInfoTitle": "全部隐藏成功",
     "maskedInfoMessage": "所有信息已隐藏，现在可以安心截图了。",
     "unmaskedInfoTitle": "取消隐藏",
-    "unmaskedInfoMessage": "信息已显示，截图时请注意隐私。"
+    "unmaskedInfoMessage": "信息已显示，截图时请注意隐私。",
+    "SignInFailed": "登录失败",
+    "SignInFailedReason": "原因"
   },
   "shortcutKeys": {
     "id": "shortcutKeys",
@@ -397,13 +633,16 @@
     "About": "打开关于页面",
     "Whois": "打开 Whois 查询面板",
     "InvisibilityTest": "打开隐身测试面板",
-    "MacChecker": "打开物理地址查询面板"
+    "MacChecker": "打开物理地址查询面板",
+    "BrowserInfo": "打开浏览器信息面板",
+    "fullScreenAdvancedTools": "全屏展开高级工具面板",
+    "Curl": "命令行 API",
+    "SecurityChecklist": "打开安全检查清单"
   },
   "page": {
     "title": "IPCheck.ing - 查看我的 IP 地址 - 查询本机 IP 地址及归属地 - 查看 WebRTC 连接 IP - DNS 泄露检测 - 网速测试 - Jason Ng 阿禅开源作品",
     "description": "好用和开源的全能 IP 工具箱。轻松查看你的 IP 地址，IP 信息，检查 DNS 泄露，检查 WebRTC 连接，测试网站可用性，查找 DNS 记录，查找 Whois 信息，测试全球延迟测试等。",
     "keywords": "我的IP,IP工具,我的IP,IP查询,DNS泄漏测试,WebRTC测试,网速测试,DNS查询,Whois查询, Ping测试, 隐私测试",
-    "footerName": "Creators: Jason Ng, Seven Yu & ChatGPT",
     "footerLink": "https://github.com/jason5ng32/MyIP",
     "copyRightName": "Originally from ",
     "copyRightLink": "https://ipcheck.ing",
@@ -426,7 +665,12 @@
     "personal": "个人网站",
     "blog": "可能吧博客",
     "retiremoney": "躺平计算器",
-    "twitter": "Twitter"
+    "twitter": "Twitter",
+    "Sponsor": "赞助"
+  },
+  "specialthanks": {
+    "Title": "特别鸣谢",
+    "Note1": "这个项目之所以能够完成，少不了一些热心的人和组织的支持和帮助，以及给予灵感或开放的代码人们。非常感谢他们："
   },
   "changelog": {
     "Title": "更新日志",
@@ -785,6 +1029,100 @@
           {
             "type": "improve",
             "change": "优化了部分程序细节"
+          }
+        ]
+      },
+      {
+        "version": "v4.2",
+        "date": "Sept 25, 2024",
+        "content": [
+          {
+            "type": "add",
+            "change": "添加浏览器信息查询功能"
+          },
+          {
+            "type": "add",
+            "change": "添加 MaxMind 地理数据库"
+          },
+          {
+            "type": "improve",
+            "change": "多处体验优化"
+          }
+        ]
+      },
+      {
+        "version": "v4.3",
+        "date": "Oct 30, 2024",
+        "content": [
+          {
+            "type": "add",
+            "change": "添加命令行 API 功能"
+          },
+          {
+            "type": "improve",
+            "change": "WebRTC 测试可以展示地区信息"
+          },
+          {
+            "type": "improve",
+            "change": "DNS 泄露测试可以展示地区信息"
+          }
+        ]
+      },
+      {
+        "version": "v4.4",
+        "date": "Dec 7, 2024",
+        "content": [
+          {
+            "type": "add",
+            "change": "语言偏好设置"
+          },
+          {
+            "type": "improve",
+            "change": "地图展示供应商变更为 Google"
+          },
+          {
+            "type": "improve",
+            "change": "其它常规优化"
+          }
+        ]
+      },
+      {
+        "version": "v4.5",
+        "date": "Dec 25, 2024",
+        "content": [
+          {
+            "type": "add",
+            "change": "添加安全检查清单"
+          },
+          {
+            "type": "improve",
+            "change": "其它常规优化"
+          }
+        ]
+      },
+      {
+        "version": "v5.0",
+        "date": "Jan 31, 2025",
+        "content": [
+          {
+            "type": "add",
+            "change": "新增用户系统"
+          },
+          {
+            "type": "add",
+            "change": "新增用户成就系统"
+          },
+          {
+            "type": "add",
+            "change": "新增 Lite 版本"
+          },
+          {
+            "type": "add",
+            "change": "网速测试可以看到数据变化图表"
+          },
+          {
+            "type": "improve",
+            "change": "代码效率优化"
           }
         ]
       }

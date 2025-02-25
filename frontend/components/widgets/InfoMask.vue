@@ -1,17 +1,23 @@
 <template>
-    <button v-show="showMaskButton" class="btn infomask"
-        :class="infoMaskLevel === 0 ? 'btn-success' : infoMaskLevel === 1 ? 'btn-warning' : 'btn-secondary'"
-        @click="toggleInfoMask" aria-label="Toggle Info Mask"
-        v-tooltip="t('Tooltips.InfoMask')">
+    <button v-show="showMaskButton" class="btn infomask" :class="{
+        'btn-success': infoMaskLevel === 0,
+        'btn-warning': infoMaskLevel === 1,
+        'btn-secondary': infoMaskLevel === 2
+    }" @click="toggleInfoMask" aria-label="Toggle Info Mask" v-tooltip="t('Tooltips.InfoMask')">
         <i :class="infoMaskLevel === 0 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
     </button>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useMainStore } from '@/store';
 
-const {t} = useI18n();
+const { t } = useI18n();
+
+const store = useMainStore();
+const isDarkMode = computed(() => store.isDarkMode);
+const isMobile = computed(() => store.isMobile);
 
 const { showMaskButton, infoMaskLevel, toggleInfoMask } = defineProps({
     showMaskButton: Boolean,
@@ -43,8 +49,8 @@ onMounted(() => {
 <style scoped>
 .infomask {
     position: fixed;
-    bottom: 66px; 
-    right: 20px; 
+    bottom: 66px;
+    right: 20px;
     z-index: 1050;
 }
 </style>

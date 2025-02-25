@@ -1,11 +1,10 @@
 <template>
     <!-- Search BTN -->
-    <button class="btn btn-primary queryip"
-        data-bs-toggle="modal" aria-label="IP Check" data-bs-target="#IPCheck" @click="openQueryIP"
-        v-tooltip="t('Tooltips.QueryIP')"><i class="bi bi-search"></i></button>
+    <button class="btn btn-primary queryip" data-bs-toggle="modal" aria-label="IP Check" data-bs-target="#IPCheck"
+        @click="openQueryIP" v-tooltip="t('Tooltips.QueryIP')"><i class="bi bi-search"></i></button>
 
     <!-- Search Modal -->
-    <div class="modal fade" id="IPCheck" tabindex="-1" aria-labelledby="IPCheck" aria-hidden="true">
+    <div class="modal fade" id="IPCheck" tabindex="-1" aria-labelledby="IPCheck">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" :class="{ 'dark-mode dark-mode-border': isDarkMode }">
                 <div class="modal-header" :class="{ 'dark-mode-border': isDarkMode }">
@@ -60,11 +59,15 @@
                                     <span class="jn-text col-auto">
                                         <i class="bi bi-reception-4"></i> {{ t('ipInfos.type')
                                         }}</span>&nbsp;:&nbsp;
-                                    <span class="col-10 ">
+                                    <span v-if="modalQueryResult.type !=='sign_in_required'" class="col-10 ">
                                         {{ modalQueryResult.type }}
                                         <span v-if="modalQueryResult.proxyOperator !== 'unknown'">
                                             ( {{ modalQueryResult.proxyOperator }} )
                                         </span>
+                                    </span>
+
+                                    <span v-else class="col-8 text-secondary">
+                                        {{ t('user.SignInToView') }}
                                     </span>
                                 </li>
 
@@ -73,15 +76,48 @@
                                     <span class="jn-text col-auto">
                                         <i class="bi bi-shield-fill-check"></i>
                                         {{ t('ipInfos.isProxy') }}</span>&nbsp;:&nbsp;
-                                    <span class="col-10 ">
+                                    <span v-if="modalQueryResult.isProxy !=='sign_in_required'" class="col-10 ">
                                         {{ modalQueryResult.isProxy }}
                                         <span
                                             v-if="modalQueryResult.proxyProtocol !== t('ipInfos.proxyDetect.unknownProtocol')">
                                             ( {{ modalQueryResult.proxyProtocol }} )
                                         </span>
                                     </span>
+                                    <span v-else class="col-8 text-secondary">
+                                        {{ t('user.SignInToView') }}
+                                    </span>
                                 </li>
 
+                                <li v-if="ipGeoSource === 0" class="jn-list-group-item"
+                                    :class="{ 'dark-mode': isDarkMode }">
+                                    <span class="jn-text col-auto">
+                                        <i class="bi bi-speedometer"></i>
+                                        {{ t('ipInfos.qualityScore') }} :&nbsp;
+                                    </span>
+
+                                    <span
+                                        v-if="modalQueryResult.qualityScore !== 'unknown' && modalQueryResult.qualityScore !== 'sign_in_required'"
+                                        class="col-3 jn-risk-score ">
+                                        <span class="progress border"
+                                            :class="[isDarkMode ? 'border-light bg-dark' : 'border-dark']"
+                                            role="progressbar" aria-label="Quality Score" aria-valuenow="0"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <span class="progress-bar" :class="[isDarkMode ? 'bg-light' : 'bg-dark']"
+                                                :style='"width:" + modalQueryResult.qualityScore +"%"'></span>
+                                        </span>
+                                    </span>
+
+                                    <span v-if="modalQueryResult.qualityScore !== 'sign_in_required'" class="ps-2">
+                                        <span v-if="modalQueryResult.qualityScore === 'unknown'">
+                                            {{ t('ipInfos.qualityScoreUnknown') }}
+                                        </span>
+                                        <span v-else>{{ modalQueryResult.qualityScore }}%</span>
+                                    </span>
+                                    <span v-if="modalQueryResult.qualityScore === 'sign_in_required'"
+                                        class="col-8 text-secondary">
+                                        {{ t('user.SignInToView') }}
+                                    </span>
+                                </li>
 
                                 <li class="list-group-item jn-list-group-item" :class="{ 'dark-mode': isDarkMode }">
                                     <span class="jn-text col-auto">
@@ -121,8 +157,9 @@ import { isValidIP } from '@/utils/valid-ip.js';
 import { transformDataFromIPapi } from '@/utils/transform-ip-data.js';
 import { useI18n } from 'vue-i18n';
 import { trackEvent } from '@/utils/use-analytics';
+import { authenticatedFetch } from '@/utils/authenticated-fetch';
 
-const {t} = useI18n();
+const { t } = useI18n();
 
 // 引入 Store
 const store = useMainStore();
@@ -196,15 +233,8 @@ const fetchIPForModal = async (ip, sourceID = null) => {
         if (sourceID && source.id !== sourceID) continue;
         try {
             const url = store.getDbUrl(source.id, ip, selectedLang);
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            if (data.error) {
-                throw new Error(data.reason || "IP lookup failed");
-            }
-            modalQueryResult.value = transformDataFromIPapi(data, source.id, t,lang.value);
+            const response = await authenticatedFetch(url);
+            modalQueryResult.value = transformDataFromIPapi(response, source.id, t, lang.value);
             isChecking.value = "idle";
             break;
         } catch (error) {

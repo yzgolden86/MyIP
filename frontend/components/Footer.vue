@@ -1,26 +1,29 @@
 <template>
   <footer>
     <div id="copyleft">
-      <p class="text-center">{{ t('page.footerName') }} <a :href="t('page.footerLink')" class="link-dark"
-          target="_blank" @click="trackEvent('Footer', 'FooterClick', 'Github');" aria-label="Github"><i
-            class="bi bi-github" :class="{ 'dark-mode': isDarkMode }"
+      <p class="text-center"><span>Created by Jason Ng with love</span> <a :href="t('page.footerLink')"
+          class="link-dark" target="_blank" @click="trackEvent('Footer', 'FooterClick', 'Github');"
+          aria-label="Github"><i class="bi bi-github" :class="{ 'dark-mode': isDarkMode }"
             v-tooltip="{ title: t('Tooltips.GithubLink'), placement: 'top' }"></i></a>
       </p>
     </div>
 
     <div id="about" class="text-center mb-2">
+      <a class="link link-underline-offset link-underline-opacity-0 jn-heart-color" role="button"
+        aria-controls="Sponsor" href="https://github.com/sponsors/jason5ng32" target="_blank">
+        {{ t('about.Sponsor') }} 💖
+      </a>&nbsp;&nbsp;
       <a class="link link-underline-offset link-underline-opacity-0" :class="[isDarkMode ? 'link-light' : 'link-dark']"
         role="button" aria-controls="About" @click.prevent="openAbout">
         {{ t('about.Title') }} <i class="bi bi-arrow-left-circle-fill"></i>
       </a>
     </div>
 
-
     <div class="offcanvas offcanvas-end mt-5 border-0 h-100" :class="[isMobile ? ' w-100' : '']" tabindex="-1"
       id="About" aria-labelledby="AboutLabel" :data-bs-theme="isDarkMode ? 'dark' : 'light'">
       <div class="offcanvas-header mt-3">
         <div class="btn-group" role="group">
-          <template v-for="show in ['about', 'changelog']">
+          <template v-for="show in ['about', 'changelog', 'specialthanks']">
             <input v-model="content" type="radio" class="btn-check" :name="'About_' + show" :id="'About_' + show"
               autocomplete="off" :value=show @change="toggleContent(show)">
             <label class="btn jn-number" :class="{
@@ -37,26 +40,14 @@
       <div class="offcanvas-body" ref="offcanvasBody">
         <div v-if="showAbout">
           <div class="mb-3">
-            <p>
-              {{ t('about.product1') }}
-            </p>
-            <p>
-              {{ t('about.product2') }}
-            </p>
-            <p>
-              {{ t('about.product3') }}
+            <p v-for="i in 3" :key="i">
+              {{ t(`about.product${i}`) }}
             </p>
           </div>
           <h5>{{ t('about.meTitle') }}</h5>
           <div class="mb-3">
-            <p>
-              {{ t('about.me1') }}
-            </p>
-            <p>
-              {{ t('about.me2') }}
-            </p>
-            <p>
-              {{ t('about.me3') }}
+            <p v-for="i in 3" :key="i">
+              {{ t(`about.me${i}`) }}
             </p>
           </div>
           <div class="mb-3 mx-2">
@@ -101,6 +92,21 @@
             </div>
           </div>
         </div>
+        <div v-if="showSpecialThanks">
+          <div class="mb-3">
+            <p>
+              {{ t('specialthanks.Note1') }}
+            </p>
+          </div>
+
+          <div v-for="(item, index) in thanksList" :key="index" class="mb-3 fst-italic">
+            <i class="bi bi-emoji-smile-fill "></i> {{ item.name }}
+            <a v-if="item.link" :class="[isDarkMode ? 'link-light' : 'link-dark']" :href="item.link" target="_blank">
+              <i class="bi bi-arrow-up-right-square"></i>
+            </a>
+          </div>
+
+        </div>
 
         <div id="offcanvasPlaceholder mb-5" class="jn-placeholder mb-5">
         </div>
@@ -124,7 +130,7 @@ import { Offcanvas } from 'bootstrap';
 import { useI18n } from 'vue-i18n';
 import { trackEvent } from '@/utils/use-analytics';
 
-const {t,tm} = useI18n();
+const { t, tm } = useI18n();
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -134,7 +140,47 @@ const configs = computed(() => store.configs);
 const content = ref('about');
 const showAbout = ref(true);
 const showChangelog = ref(false);
+const showSpecialThanks = ref(false);
 const changelog = reactive(tm('changelog.versions'));
+
+const thanksList = [
+  {
+    name: 'Setilis Hu',
+    link: ''
+  },
+  {
+    name: 'Seven Yu',
+    link: 'https://github.com/dofy'
+  },
+  {
+    name: 'Nikolai Tschacher',
+    link: 'https://incolumitas.com/pages/about/'
+  },
+  {
+    name: 'Project Alexandria (Cloudflare)',
+    link: 'https://www.cloudflare.com/lp/project-alexandria/'
+  },
+  {
+    name: 'Cloudflare Speedtest',
+    link: 'https://github.com/cloudflare/speedtest'
+  },
+  {
+    name: 'Globalping by jsDelivr',
+    link: 'https://globalping.io/'
+  },
+  {
+    name: 'ProxyCheck.io',
+    link: 'https://proxycheck.io/'
+  },
+  {
+    name: 'Digital Defense',
+    link: 'https://digital-defense.io/'
+  },
+  {
+    name: 'ChatGPT',
+    link: 'https://chatgpt.com/'
+  }
+]
 
 const openAbout = () => {
   var offcanvasElement = document.getElementById('About');
@@ -154,6 +200,7 @@ const offcanvasBody = ref(null);
 const toggleContent = (contentType) => {
   showAbout.value = contentType === 'about';
   showChangelog.value = contentType === 'changelog';
+  showSpecialThanks.value = contentType === 'specialthanks';
   content.value = contentType;
   offcanvasBody.scrollTop = 0;
 };
@@ -170,5 +217,10 @@ defineExpose({
 
 .jn-placeholder {
   height: 20pt;
+}
+
+.jn-heart-color {
+  color: #d63384;
+  text-decoration: none;
 }
 </style>

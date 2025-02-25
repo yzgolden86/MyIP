@@ -1,9 +1,6 @@
 <template>
     <!-- Whois Resolver -->
-    <div class="whois-section mb-4">
-        <div class="jn-title2">
-            <h2 id="Whois" :class="{ 'mobile-h2': isMobile }">📓 {{ t('whois.Title') }}</h2>
-        </div>
+    <div class="whois-section my-4">
         <div class="text-secondary">
             <p>{{ t('whois.Note') }}</p>
         </div>
@@ -89,6 +86,7 @@ const { t } = useI18n();
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
 const isMobile = computed(() => store.isMobile);
+const isSignedIn = computed(() => store.isSignedIn);
 
 const queryURLorIP = ref('');
 const whoisCheckStatus = ref('idle');
@@ -158,6 +156,10 @@ const getWhoisResults = async (query) => {
         getProviders(data);
         if (type.value === 'domain' && providers.value.length >= 1) {
             whoisResults.value = data;
+            // 成就检查
+            if (isSignedIn.value && query.toLowerCase().includes('ipcheck.ing')) {
+                checkAchievements();
+            }
             errorMsg.value = '';
         } else if (type.value === 'ip' && data.__raw) {
             whoisResults.value = data;
@@ -198,6 +200,14 @@ const filterIPWhoisRawData = (text) => {
     text = text.replace(/\n$/, ''); // 移除最后一个空行
     return text;
 };
+
+// 检查是否达成成就
+const checkAchievements = () => {
+    if (!store.userAchievements.CuriousCat.achieved) {
+        store.setTriggerUpdateAchievements('CuriousCat');
+    }
+}
+
 </script>
 
 <style scoped>

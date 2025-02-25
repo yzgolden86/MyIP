@@ -1,9 +1,6 @@
 <template>
     <!-- DNS Resolver -->
-    <div class="dns-resolver-section mb-4">
-        <div class="jn-title2">
-            <h2 id="DNSResolver" :class="{ 'mobile-h2': isMobile }">🔦 {{ t('dnsresolver.Title') }}</h2>
-        </div>
+    <div class="dns-resolver-section my-4">
         <div class="text-secondary">
             <p>{{ t('dnsresolver.Note') }}</p>
         </div>
@@ -28,12 +25,10 @@
                                 <span class="visually-hidden">Choose Type</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li @click="changeType('A')"><span class="dropdown-item">A</span></li>
-                                <li @click="changeType('AAAA')"><span class="dropdown-item">AAAA</span></li>
-                                <li @click="changeType('CNAME')"><span class="dropdown-item">CNAME</span></li>
-                                <li @click="changeType('MX')"><span class="dropdown-item">MX</span></li>
-                                <li @click="changeType('NS')"><span class="dropdown-item">NS</span></li>
-                                <li @click="changeType('TXT')"><span class="dropdown-item">TXT</span></li>
+                                <li v-for="type in ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'TXT']" :key="type"
+                                    @click="changeType(type)">
+                                    <span class="dropdown-item">{{ type }}</span>
+                                </li>
                             </ul>
                             <button class="btn btn-primary" @click="onSubmit"
                                 :disabled="dnsCheckStatus === 'running' || !queryURL">
